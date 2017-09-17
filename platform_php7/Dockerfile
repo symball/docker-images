@@ -1,4 +1,4 @@
-FROM symball/pivot88:base_php7
+FROM symball/pivot88-docker:base_php7
 MAINTAINER Simon Ball <open-source@simonball.me>
 
 USER root
