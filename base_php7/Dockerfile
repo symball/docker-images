@@ -30,7 +30,6 @@ RUN apk --update add \
   php7-xml \
   php7-zip \
   php7-zlib \
-  # Command line tools
   autoconf \
   bash \
   ca-certificates \
@@ -38,10 +37,10 @@ RUN apk --update add \
   git \
   libsasl \
   nodejs \
+  nodejs-npm \
   openssh \
   && ssh-keygen -A \
-  && rm -rf /var/cache/apk/* \
-  && ln -s /usr/bin/php7 /usr/bin/php
+  && rm -rf /var/cache/apk/*
 
 COPY tools/phing /usr/local/bin/phing
 COPY php.ini /etc/php7/php.ini

@@ -28,7 +28,4 @@ RUN chmod a+x -R /usr/local/bin && \
  phpmd --version && \
  phpunit --version
 
-# GulpJS task runner
-RUN npm i -g gulp bower && gulp -v && bower -v
-
 CMD ["/bin/bash"]
