@@ -5,6 +5,6 @@ USER root
 
 RUN apk --update add \
   php7-fpm \
-  && rm -rf /var/cache/apk/* \
+  && rm -rf /var/cache/apk/*
 
 CMD ["php-fpm7", "-F"]
