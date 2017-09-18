@@ -6,6 +6,7 @@ USER root
 RUN apk --update add \
   # EXTRA DEVELOPER TOOLS
   php7-fileinfo \
+  php7-simplexml \
   php7-tokenizer \
   php7-xdebug \
   php7-xsl \
