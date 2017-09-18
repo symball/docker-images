@@ -30,6 +30,7 @@ RUN apk --update add \
   php7-xml \
   php7-xmlreader \
   php7-xmlwriter \
+  php7-xsl \
   php7-zip \
   php7-zlib \
   autoconf \
@@ -38,17 +39,12 @@ RUN apk --update add \
   curl \
   git \
   libsasl \
-  nodejs \
-  nodejs-npm \
   openssh \
   && ssh-keygen -A \
   && rm -rf /var/cache/apk/*
 
 COPY tools/phing /usr/local/bin/phing
 COPY php.ini /etc/php7/php.ini
-
-# GulpJS task runner
-RUN npm i -g gulp && gulp -v
 
 # Grab the latest Composer install
 RUN curl -sS https://getcomposer.org/installer | \
