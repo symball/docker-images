@@ -18,6 +18,7 @@ RUN apt-get -y install \
   curl \
   git \
   # EXTRA TOOLS
+  node \
   nodejs \
   npm \
   openssh-client
@@ -27,9 +28,11 @@ RUN apt-get -y install \
     php -- --install-dir=/usr/local/bin \
     --filename=composer && \
     composer --version
+    # Install composer plugin for parallel downloads
+    RUN composer global require hirak/prestissimo
+
 
   # Copy across some of the utilities
-  COPY tools/pdepend /usr/local/bin/pdepend
   COPY tools/phing /usr/local/bin/phing
   COPY tools/phpdox /usr/local/bin/phpdox
   COPY tools/phploc /usr/local/bin/phploc
@@ -38,7 +41,8 @@ RUN apt-get -y install \
 
   # Output the versions os the above utilities
   RUN chmod a+x -R /usr/local/bin && \
-   pdepend --version && \
+   # TODO PHP5 version of pdepend for legacy support?
+   # pdepend --version && \
    phing -v && \
    phpdox --version && \
    phploc --version && \
@@ -46,7 +50,10 @@ RUN apt-get -y install \
    phpunit --version
 
   # GulpJS task runner
-  RUN npm i -g gulp bower && gulp -v && bower -v
+  RUN npm i -g gulp bower
+  # RUN gulp -v
+  # TODO Check bower on this version
+  # && bower -v
 
 # Prepare a user and workspace
 RUN mkdir -p /srv \

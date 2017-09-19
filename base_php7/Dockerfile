@@ -52,7 +52,8 @@ COPY php.ini /etc/php7/php.ini
 RUN curl -sS https://getcomposer.org/installer | \
   php -- --install-dir=/usr/local/bin --filename=composer && \
   composer --version
-
+# Install composer plugin for parallel downloads
+RUN composer global require hirak/prestissimo
 WORKDIR /srv
 
 CMD ["/bin/bash"]
