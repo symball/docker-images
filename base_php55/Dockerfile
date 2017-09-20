@@ -16,14 +16,16 @@ RUN apt-get -y install \
   git \
   openssh-client
 
+RUN php5enmod mcrypt
+
   # Grab the latest Composer install
   RUN curl -sS https://getcomposer.org/installer | \
     php -- --install-dir=/usr/local/bin \
     --filename=composer && \
     composer --version
+
     # Install composer plugin for parallel downloads
     RUN composer global require hirak/prestissimo
-
 
   # Copy across some of the utilities
   COPY tools/phing /usr/local/bin/phing
