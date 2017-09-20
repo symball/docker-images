@@ -1,39 +1,15 @@
-FROM ubuntu:14.04
+FROM symball/pivot88-docker:base_php55
 MAINTAINER Simon Ball <open-source@simonball.me>
-
-ARG USER_ID=1000
-ARG GROUP_ID=1000
 
 USER root
 
 RUN apt-get update
 RUN apt-get -y install \
-  php5 \
-  php5-curl \
-  php5-mysql \
-  php5-gd \
-  php5-mcrypt \
-  php5-ldap \
-  php5-xsl \
-  curl \
-  git \
-  # EXTRA TOOLS
   node \
   nodejs \
-  npm \
-  openssh-client
-
-  # Grab the latest Composer install
-  RUN curl -sS https://getcomposer.org/installer | \
-    php -- --install-dir=/usr/local/bin \
-    --filename=composer && \
-    composer --version
-    # Install composer plugin for parallel downloads
-    RUN composer global require hirak/prestissimo
-
+  npm
 
   # Copy across some of the utilities
-  COPY tools/phing /usr/local/bin/phing
   COPY tools/phpdox /usr/local/bin/phpdox
   COPY tools/phploc /usr/local/bin/phploc
   COPY tools/phpmd /usr/local/bin/phpmd
@@ -41,9 +17,6 @@ RUN apt-get -y install \
 
   # Output the versions os the above utilities
   RUN chmod a+x -R /usr/local/bin && \
-   # TODO PHP5 version of pdepend for legacy support?
-   # pdepend --version && \
-   phing -v && \
    phpdox --version && \
    phploc --version && \
    phpmd --version && \
@@ -54,17 +27,5 @@ RUN apt-get -y install \
   # RUN gulp -v
   # TODO Check bower on this version
   # && bower -v
-
-# Prepare a user and workspace
-RUN mkdir -p /srv \
-  && addgroup --gid $GROUP_ID platform \
-  && useradd -d /home/php -s /usr/bin/bash -g platform -u $USER_ID php \
-  && chmod -R 775 /srv \
-  && chown -R php:platform /srv \
-  && mkdir -p /var/log/php7 \
-  && chown -R php:platform /var/log
-
-USER php
-WORKDIR /srv
 
 CMD ["/bin/bash"]
