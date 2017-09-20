@@ -29,8 +29,7 @@ RUN apt-get -y install \
   COPY tools/phing /usr/local/bin/phing
 
   # Output the versions os the above utilities
-  RUN chmod a+x -R /usr/local/bin && \
-   phing -v
+  RUN chmod a+x -R /usr/local/bin
 
 # Prepare a user and workspace
 RUN mkdir -p /srv
