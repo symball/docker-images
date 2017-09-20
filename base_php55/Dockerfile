@@ -5,8 +5,18 @@ USER root
 
 RUN apt-get update
 RUN apt-get -y install \
+  language-pack-ar \
+  language-pack-en \
+  language-pack-es \
+  language-pack-fr \
+  language-pack-ja \
+  language-pack-km \
+  language-pack-vi \
+  language-pack-zh-hans-base \
+  fonts-arphic-uming \
   php5 \
   php5-curl \
+  php5-intl \
   php5-mysql \
   php5-gd \
   php5-mcrypt \
@@ -16,7 +26,7 @@ RUN apt-get -y install \
   git \
   openssh-client
 
-RUN php5enmod mcrypt
+RUN php5enmod mcrypt && php5enmod intl
 
   # Grab the latest Composer install
   RUN curl -sS https://getcomposer.org/installer | \
