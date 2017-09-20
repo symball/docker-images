@@ -16,11 +16,7 @@ RUN apt-get -y install \
   COPY tools/phpunit /usr/local/bin/phpunit
 
   # Output the versions os the above utilities
-  RUN chmod a+x -R /usr/local/bin && \
-   phpdox --version && \
-   phploc --version && \
-   phpmd --version && \
-   phpunit --version
+  RUN chmod a+x -R /usr/local/bin
 
   # GulpJS task runner
   RUN npm i -g gulp bower
