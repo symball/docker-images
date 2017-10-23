@@ -12,7 +12,7 @@ RUN apk --update add \
   php7-xsl \
   nodejs \
   nodejs-npm \
-  && rm -rf /var/cache/apk/* \
+  && rm -rf /var/cache/apk/*
 
 # Enable xDebug
 RUN echo "zend_extension=xdebug.so" > /etc/php7/conf.d/xdebug.ini
