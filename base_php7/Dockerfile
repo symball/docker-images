@@ -5,6 +5,7 @@ USER root
 
 RUN apk --update add \
   php7 \
+  php7-apcu \
   php7-bcmath \
   php7-dom \
   php7-ctype \
