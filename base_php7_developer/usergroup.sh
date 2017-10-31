@@ -16,12 +16,5 @@ if grep -q "^:$GROUP_ID:" /etc/group
     fi
 
 # Check whether the user exists and simply mod the ID if so
-if id -u php
-  then
-    usermod -u $USER_ID -g $GROUP_ID php
-  else
-    adduser -D -h /home/php -s /usr/bin/bash -G platform -u $USER_ID php
-  fi
-
-
-
+id -u php &>/dev/null || adduser -D -h /home/php -s /usr/bin/bash -G platform -u $USER_ID php
+usermod -u $USER_ID -g $GROUP_ID php
