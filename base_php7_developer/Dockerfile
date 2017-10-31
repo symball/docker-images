@@ -1,4 +1,4 @@
-FROM symball/pivot88-docker:base_php7
+FROM symball/docker-images:base_php7
 MAINTAINER Simon Ball <open-source@simonball.me>
 
 USER root
@@ -12,6 +12,7 @@ RUN apk --update add \
   php7-xsl \
   nodejs \
   nodejs-npm \
+  shadow \
   && rm -rf /var/cache/apk/*
 
 # Enable xDebug
@@ -26,6 +27,7 @@ COPY tools/phpdox /usr/local/bin/phpdox
 COPY tools/phploc /usr/local/bin/phploc
 COPY tools/phpmd /usr/local/bin/phpmd
 COPY tools/phpunit /usr/local/bin/phpunit
+COPY usergroup.sh /usr/local/bin/usergroupmatch
 
 # Output the versions os the above utilities
 RUN chmod a+x -R /usr/local/bin
