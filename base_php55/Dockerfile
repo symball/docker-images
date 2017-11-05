@@ -39,6 +39,7 @@ RUN php5enmod mcrypt && php5enmod intl
 
   # Copy across some of the utilities
   COPY tools/phing /usr/local/bin/phing
+  COPY usergroup.sh /usr/local/bin/usergroupmatch
 
   # Output the versions os the above utilities
   RUN chmod a+x -R /usr/local/bin

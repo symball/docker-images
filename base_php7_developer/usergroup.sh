@@ -1,7 +1,7 @@
 #!/bin/bash
 
-USER_ID=$2
-GROUP_ID=$1
+USER_ID=$1
+GROUP_ID=$2
 
 # Check if the platform group exists and configure accordingly
 if grep -q "^:$GROUP_ID:" /etc/group
