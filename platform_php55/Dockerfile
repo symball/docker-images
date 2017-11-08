@@ -1,4 +1,4 @@
-FROM symball/pivot88-docker:base_php55
+FROM symball/docker-images:base_php55
 MAINTAINER Simon Ball <open-source@simonball.me>
 
 USER root
