@@ -33,6 +33,12 @@ COPY usergroup.sh /usr/local/bin/usergroupmatch
 RUN chmod a+x -R /usr/local/bin
 
 # GulpJS task runner
-RUN npm i -g bower webpack gulp gulp-cli
+RUN npm i -g \
+    bower \
+    webpack \
+    gulp \
+    gulp-cli \
+    node-gyp \
+    marked
 
 CMD ["/bin/bash"]

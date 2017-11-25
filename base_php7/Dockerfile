@@ -19,12 +19,9 @@ RUN apk --update add \
   php7-ldap \
   php7-mbstring \
   php7-mcrypt \
-  php7-mysqlnd \
   php7-opcache \
   php7-openssl \
   php7-pdo \
-  php7-pdo_mysql \
-  php7-pdo_sqlite \
   php7-phar \
   php7-posix \
   php7-simplexml \
