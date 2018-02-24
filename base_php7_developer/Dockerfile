@@ -36,10 +36,14 @@ RUN chmod a+x -R /usr/local/bin
 # GulpJS task runner
 RUN npm i -g \
     bower \
-    webpack \
     gulp \
     gulp-cli \
+    grunt-cli \
+    marked \
     node-gyp \
-    marked
+    npm-check-updates \
+    npm-do \
+    webpack \
+    yarn
 
 CMD ["/bin/bash"]

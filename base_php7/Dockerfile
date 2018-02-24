@@ -40,11 +40,15 @@ RUN apk --update add \
   git \
   libsasl \
   openssh \
-  && ssh-keygen -A \
-  && rm -rf /var/cache/apk/*
+  && ssh-keygen -A
 
 COPY tools/phing /usr/local/bin/phing
 COPY php.ini /etc/php7/php.ini
+
+# Add timezone
+RUN rm /etc/localtime && \
+    ln -s /usr/share/zoneinfo/UTC /etc/localtime && \
+"date"
 
 # Grab the latest Composer install
 RUN curl -sS https://getcomposer.org/installer | \
@@ -52,6 +56,12 @@ RUN curl -sS https://getcomposer.org/installer | \
   composer --version
 # Install composer plugin for parallel downloads
 RUN composer global require hirak/prestissimo
+
+# Cleanup
+RUN rm -rf /var/cache/apk/* \
+    && find / -type f -iname \*.apk-new -delete \
+&& rm -rf /var/cache/apk/*
+
 WORKDIR /srv
 
 CMD ["/bin/bash"]
