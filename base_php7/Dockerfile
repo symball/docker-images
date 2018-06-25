@@ -1,4 +1,4 @@
-FROM alpine:3.6
+FROM alpine:edge
 MAINTAINER Simon Ball <open-source@simonball.me>
 
 USER root
