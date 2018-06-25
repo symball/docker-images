@@ -41,8 +41,6 @@ RUN npm i -g \
     grunt-cli \
     marked \
     node-gyp \
-    npm-check-updates \
-    npm-do \
     webpack \
     yarn
 
