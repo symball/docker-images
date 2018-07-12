@@ -6,6 +6,9 @@ USER root
 # Copy phalcon from builder base
 COPY --from=symball/docker-images:base_php7_developer_phalcon_builder /usr/lib/php7/modules/phalcon.so /usr/lib/php7/modules/phalcon.so
 
+# Enable Phalcon extension
+RUN echo "extension=phalcon.so" > /etc/php7.conf.d/phalcon.ini
+
 COPY pool_config.conf /etc/php7/php-fpm.d/www.conf
 
 RUN apk --update add \
