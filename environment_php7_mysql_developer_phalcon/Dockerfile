@@ -12,7 +12,7 @@ RUN apk --update add \
 COPY --from=symball/docker-images:base_php7_developer_phalcon_builder /usr/lib/php7/modules/phalcon.so /usr/lib/php7/modules/phalcon.so
 
 # Enable Phalcon extension
-RUN echo "extension=phalcon.so" > /etc/php7.conf.d/phalcon.ini
+RUN echo "extension=phalcon.so" > /etc/php7/conf.d/phalcon.ini
 
 WORKDIR /var/opt
 RUN git clone git://github.com/phalcon/phalcon-devtools.git
