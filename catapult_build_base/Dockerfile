@@ -30,7 +30,7 @@ RUN wget https://github.com/mongodb/mongo-c-driver/archive/${MONGO_C_VERSION}.ta
 
 WORKDIR /src
 RUN wget https://github.com/mongodb/mongo-cxx-driver/archive/r${MONGO_CXX_VERSION}.tar.gz && \
-    tar -xz-xf r${MONGO_CXX_VERSION}.tar.gz && \
+    tar -xvf r${MONGO_CXX_VERSION}.tar.gz && \
     cd mongo-cxx-driver-r${MONGO_CXX_VERSION}/build && \
     cmake -DBSONCXX_POLY_USE_BOOST=1 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local .. && \
     make && \
