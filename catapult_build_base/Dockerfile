@@ -4,9 +4,9 @@ ARG MONGO_C_VERSION=1.12.0
 ARG MONGO_CXX_VERSION=3.3.1
 ARG ZEROMQ_VERSION=4.3.0
 ARG LIBZQ_VERSION=4.2.5
-ARG BOOST_VERSION=1.68.0
+ARG BOOST_VERSION=1.65.1
 # Should be the same as boost version replacing the dots for underscores
-ARG BOOST_REF=1_68_0
+ARG BOOST_REF=1_65_1
 
 # Install the base services to build from
 WORKDIR /opt
@@ -16,20 +16,18 @@ RUN apk --update --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ a
   git \
   wget \
   # Specific libraries for project compilation
-  boost-dev \
   cppzmq \
   gtest \
   gtest-dev \
-  rocksdb-dev \
-  zeromq-dev
+  rocksdb-dev
 
 # Boost Driver as prerequisite
-# WORKDIR /opt
-# RUN wget https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_${BOOST_REF}.tar.gz && \
-    # tar xvf boost_${BOOST_REF}.tar.gz && \
-    # cd boost_${BOOST_REF} && \
-    # ./bootstrap.sh && \
-    # ./b2 install -j2
+WORKDIR /opt
+RUN wget https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_${BOOST_REF}.tar.gz && \
+  tar xvf boost_${BOOST_REF}.tar.gz && \
+  cd boost_${BOOST_REF} && \
+  ./bootstrap.sh && \
+  ./b2 install -j2
 
 # Mongo C Driver as prerequisite
 WORKDIR /opt
@@ -65,9 +63,9 @@ RUN wget https://github.com/zeromq/cppzmq/archive/v${ZEROMQ_VERSION}.tar.gz && \
 
 # ZeroMQ Driver
 WORKDIR /opt
-RUN https://github.com/zeromq/libzmq/archive/v${LIBZQ_VERSION}.tar.gz && \
+RUN wget https://github.com/zeromq/libzmq/archive/v${LIBZQ_VERSION}.tar.gz && \
   tar xvf v${LIBZQ_VERSION} && \
-  mkdir -p libzmq-${LIBZQ_VERSION}/_build
+  mkdir -p libzmq-${LIBZQ_VERSION}/_build && \
   cd libzmq-${LIBZQ_VERSION}/build && \
   cmake -DCMAKE_INSTALL_PREFIX=/usr/local .. && \
   make && \
