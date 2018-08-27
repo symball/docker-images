@@ -60,10 +60,9 @@ RUN apt-get update -y && apt-get upgrade -y && apt-get install -y \
 #   && cd -
 
 # rocksdb
-# RUN git clone https://github.com/facebook/rocksdb.git -b v5.12.4 --depth 1 \
-#   && mkdir -p rocksdb/_build && cd rocksdb/_build \
-#   && cmake -DCMAKE_INSTALL_PREFIX=/usr/local .. && make -j4 && make install \
-#   && cd -
+RUN git clone https://github.com/facebook/rocksdb.git -b v5.12.4 --depth 1 \
+  && mkdir -p rocksdb/_build && cd rocksdb/_build \
+  && cmake -DCMAKE_INSTALL_PREFIX=/usr/local .. && make -j4 && make install
 
 # ZeroMQ Driver
 WORKDIR /opt
