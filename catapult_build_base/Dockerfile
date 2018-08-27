@@ -4,9 +4,9 @@ ARG MONGO_C_VERSION=1.12.0
 ARG MONGO_CXX_VERSION=3.3.1
 ARG ZEROMQ_VERSION=4.3.0
 ARG LIBZQ_VERSION=4.2.5
-ARG BOOST_VERSION=1.65.1
+ARG BOOST_VERSION=1.68.1
 # Should be the same as boost version replacing the dots for underscores
-ARG BOOST_REF=1_65_1
+ARG BOOST_REF=1_68_0
 
 RUN apt-get update -y && apt-get upgrade -y && apt-get install -y \
   git \
@@ -27,7 +27,6 @@ RUN apt-get update -y && apt-get upgrade -y && apt-get install -y \
   # Extra introduced to cut out build complexity
   cmake \
   gcc \
-  libboost-all-dev \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # gcc,g++ 7
@@ -45,13 +44,13 @@ RUN apt-get update -y && apt-get upgrade -y && apt-get install -y \
 #   && cd -
 
 # Boost Driver as prerequisite
-# WORKDIR /opt
-# RUN wget https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_${BOOST_REF}.tar.gz && \
-#   tar xvf boost_${BOOST_REF}.tar.gz && \
-#   cd boost_${BOOST_REF} && \
-#   ./bootstrap.sh && \
-#   ./b2 install -j2
-
+WORKDIR /opt
+RUN wget https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_${BOOST_REF}.tar.gz && \
+   tar xvf boost_${BOOST_REF}.tar.gz && \
+   cd boost_${BOOST_REF} && \
+   ./bootstrap.sh && \
+   ./b2 install -j2
+we
 
 # gtest
 RUN git clone https://github.com/google/googletest.git -b release-1.8.0 --depth 1 \
