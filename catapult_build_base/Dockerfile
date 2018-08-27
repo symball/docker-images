@@ -54,10 +54,9 @@ RUN apt-get update -y && apt-get upgrade -y && apt-get install -y \
 
 
 # gtest
-# RUN git clone https://github.com/google/googletest.git -b release-1.8.0 --depth 1 \
-#   && mkdir -p googletest/_build && cd googletest/_build \
-#   && cmake -DCMAKE_INSTALL_PREFIX=/usr/local .. && make -j4 && make install \
-#   && cd -
+RUN git clone https://github.com/google/googletest.git -b release-1.8.0 --depth 1 \
+ && mkdir -p googletest/_build && cd googletest/_build \
+ && cmake -DCMAKE_INSTALL_PREFIX=/usr/local .. && make -j4 && make install
 
 # rocksdb
 RUN git clone https://github.com/facebook/rocksdb.git -b v5.12.4 --depth 1 \
