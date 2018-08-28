@@ -50,7 +50,6 @@ RUN wget https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_$
    cd boost_${BOOST_REF} && \
    ./bootstrap.sh && \
    ./b2 install -j2
-we
 
 # gtest
 RUN git clone https://github.com/google/googletest.git -b release-1.8.0 --depth 1 \
