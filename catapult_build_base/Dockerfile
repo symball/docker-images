@@ -6,7 +6,7 @@ ARG ZEROMQ_VERSION=4.3.0
 ARG LIBZQ_VERSION=4.2.5
 ARG BOOST_VERSION=1.68.1
 # Should be the same as boost version replacing the dots for underscores
-ARG BOOST_REF=1_68_0
+ARG BOOST_REF=1_68_1
 
 RUN apt-get update -y && apt-get upgrade -y && apt-get install -y \
   git \
