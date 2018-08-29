@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:xenial
 
 ARG CMAKE_VERSION=3.11.1
 ARG GOOGLE_TEST_VERSION=1.8.0
