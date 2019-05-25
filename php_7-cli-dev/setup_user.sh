@@ -5,7 +5,7 @@ GROUP_ID=$2
 
 if [ -z "$3" ]
     then
-        USER_NAME="developermode"
+        USER_NAME="worker"
 else
     USER_NAME=$3
 fi

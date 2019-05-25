@@ -1,9 +1,9 @@
-FROM symball/docker-images:environment_php7_mysql
+FROM symball/php:7-cli-sql
 MAINTAINER Simon Ball <open-source@simonball.me>
 
 USER root
 
-COPY pool_config.conf /etc/php7/php-fpm.d/www.conf
+COPY pool.conf /etc/php7/php-fpm.d/www.conf
 
 RUN apk --update add \
   php7-fpm \

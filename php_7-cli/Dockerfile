@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.9
 MAINTAINER Simon Ball <open-source@simonball.me>
 
 USER root
@@ -36,32 +36,25 @@ RUN apk --update add \
   autoconf \
   bash \
   ca-certificates \
+  composer \
   curl \
   git \
   libsasl \
   openssh \
-  && ssh-keygen -A
+  && ssh-keygen -A \
+  && rm -rf /var/cache/apk/* \
+  && find / -type f -iname \*.apk-new -delete
 
-COPY tools/phing /usr/local/bin/phing
+# Copy any extra tools that are to be include in the image
+COPY tools/ /usr/bin
+RUN chmod a+x /usr/bin/*
+
 COPY php.ini /etc/php7/php.ini
 
 # Add timezone
-RUN rm /etc/localtime && \
-    ln -s /usr/share/zoneinfo/UTC /etc/localtime && \
-"date"
-
-# Grab the latest Composer install
-RUN curl -sS https://getcomposer.org/installer | \
-  php -- --install-dir=/usr/local/bin --filename=composer && \
-  composer --version
-# Install composer plugin for parallel downloads
-RUN composer global require hirak/prestissimo
-
-# Cleanup
-RUN rm -rf /var/cache/apk/* \
-    && find / -type f -iname \*.apk-new -delete \
-&& rm -rf /var/cache/apk/*
+RUN ln -s /usr/share/zoneinfo/UTC /etc/localtime && "date" && \
+    composer global require hirak/prestissimo && \
+    composer global require phing/phing
 
 WORKDIR /srv
-
 CMD ["/bin/bash"]
