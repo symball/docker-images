@@ -1,4 +1,4 @@
-FROM alpine:3.9
+FROM alpine:3.10
 MAINTAINER Simon Ball <open-source@simonball.me>
 
 USER root
@@ -56,5 +56,6 @@ RUN ln -s /usr/share/zoneinfo/UTC /etc/localtime && "date" && \
     composer global require hirak/prestissimo && \
     composer global require phing/phing
 
+VOLUME /srv
 WORKDIR /srv
 CMD ["/bin/bash"]

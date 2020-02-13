@@ -22,6 +22,7 @@ RUN echo "zend_extension=xdebug.so" > /etc/php7/conf.d/xdebug.ini
 # Copy across some of the utilities
 COPY tools/ /usr/bin
 COPY setup_user.sh /usr/bin/setup_user
+COPY php.ini /etc/php7/php.ini
 
 # GulpJS task runner
 RUN npm i -g \

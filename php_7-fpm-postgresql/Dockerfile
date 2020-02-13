@@ -1,4 +1,4 @@
-FROM symball/php:7-cli-sql
+FROM symball/php:7-cli-postgresql
 MAINTAINER Simon Ball <open-source@simonball.me>
 
 RUN apk --update add \
