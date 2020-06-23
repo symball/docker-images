@@ -1,11 +1,10 @@
 
-PHP_CodeSniffer version 3.5.4 (stable) by Squiz (http://www.squiz.net)
-phpcpd 4.1.0 by Sebastian Bergmann.
+phpcpd 5.0.2 by Sebastian Bergmann.
 
-PHP_CodeSniffer version 3.5.4 (stable) by Squiz (http://www.squiz.net)
+PHP_CodeSniffer version 3.5.5 (stable) by Squiz (http://www.squiz.net)
 phpDox 0.12.0 - Copyright (C) 2010 - 2020 by Arne Blankerts and Contributors
 
-phploc 5.0.0 by Sebastian Bergmann.
+phploc 6.0.2 by Sebastian Bergmann.
 
 PHPUnit 7.5.20 by Sebastian Bergmann and contributors.
 
